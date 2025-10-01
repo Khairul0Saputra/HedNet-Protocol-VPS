@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from flask import Flask, request
 
 # Lokasi ekstensi relatif (pastikan file ada di repo)
-EXT_PATH = "./extension.crx"
+EXT_PATH = "./JGMEKDDKHFFANIOEFJCGFAGGJPOKIFPI_2_1_8_0.crx"
 
 # Setup Chrome + Extension
 options = webdriver.ChromeOptions()
