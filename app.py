@@ -4,23 +4,19 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from flask import Flask, request
 
-# Lokasi ekstensi relatif (pastikan file ada di repo)
-EXT_PATH = "./JGMEKDDKHFFANIOEFJCGFAGGJPOKIFPI_2_1_8_0.crx"
+EXT_PATH = "./JGMEKDDKHFFANIOEFJCGFAGGJPOKIFPI_2_1_8_0.crx"  # Pastikan file .crx ada
 
-# Setup Chrome + Extension
 options = webdriver.ChromeOptions()
 options.add_extension(EXT_PATH)
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
-options.add_argument("--headless")  # hapus kalau mau lihat UI asli
+options.add_argument("--headless=new")  # Gunakan mode headless baru Chrome
 
-# Path chromedriver biarkan default (asumsi ada di PATH)
+# Path chromedriver biarkan default jika sudah ada di PATH
 driver = webdriver.Chrome(service=Service("chromedriver"), options=options)
 
-# Tunggu load ekstensi
 time.sleep(5)
 
-# Flask untuk UI login mirip ekstensi
 app = Flask(__name__)
 
 HTML_UI = """
@@ -50,7 +46,7 @@ def login():
     password = request.form.get("password")
 
     try:
-        # Load halaman utama ekstensi
+        # Ganti sesuai URL internal ekstensi Anda
         driver.get("chrome-extension://jgmekddkhffanioefjcgfaggjpokifpi/index.html")
         time.sleep(3)
 
