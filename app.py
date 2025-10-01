@@ -14,10 +14,10 @@ options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 options.add_argument("--headless")  # hapus kalau mau lihat UI asli
 
-# Path chromedriver biarkan default, asumsikan sudah ada di PATH
+# Path chromedriver biarkan default (asumsi ada di PATH)
 driver = webdriver.Chrome(service=Service("chromedriver"), options=options)
 
-# Tunggu load
+# Tunggu load ekstensi
 time.sleep(5)
 
 # Flask untuk UI login mirip ekstensi
@@ -50,7 +50,7 @@ def login():
     password = request.form.get("password")
 
     try:
-        # Load halaman utama ekstensi (ganti sesuai path file HTML di ekstensi)
+        # Load halaman utama ekstensi
         driver.get("chrome-extension://jgmekddkhffanioefjcgfaggjpokifpi/index.html")
         time.sleep(3)
 
@@ -59,9 +59,9 @@ def login():
         driver.find_element(By.ID, "password").send_keys(password)
         driver.find_element(By.ID, "login-button").click()
 
-        return f"Login sukses untuk {username}"
+        return f"✅ Login sukses untuk {username}"
     except Exception as e:
-        return f"Gagal login: {str(e)}"
+        return f"❌ Gagal login: {str(e)}"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
